@@ -60,6 +60,10 @@ function bindSelectionHandler(element, i) {
 
   i.event.bind(window, 'mousemove', function (e) {
     if (isSelected) {
+      // don't react to mousemove if i"m currently typing in a text field
+      if (document.activeElement.tagName.toLowerCase() === "input") {
+        return;
+      }
       var mousePosition = {x: e.pageX, y: e.pageY};
       var containerGeometry = {
         left: element.offsetLeft,
